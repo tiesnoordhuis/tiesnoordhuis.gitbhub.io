@@ -24,7 +24,8 @@ function galerijLijst(){
 	[4] waarde is de lengte van het volgnummer van het plaatje
 */
 function getImgPad(){
-	var plaatsPuntArray = [document.getElementById("plaatjeFrame").src.toString().match(/\u002E/g)];
+	var plaatsPuntArray = [];
+	plaatsPuntArray.push(document.getElementById("plaatjeFrame").src.toString().match(/\u002E/g));
 	var plaatsPunt = plaatsPuntArray[plaatsPuntArray.length - 1];
 	var lengthExtensie = [document.getElementById("plaatjeFrame").src.toString().length , plaatsPunt,0,0,1];
 	lengthExtensie[2] = lengthExtensie[0] - lengthExtensie[1];
