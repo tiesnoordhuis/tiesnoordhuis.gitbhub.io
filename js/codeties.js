@@ -25,7 +25,7 @@ function galerijLijst(){
 */
 function getImgPad(){
 	var plaatsPuntArray = [];
-	plaatsPuntArray.push(document.getElementById("plaatjeFrame").src.toString().match(/\u002E/g));
+	plaatsPuntArray.push(document.getElementById("plaatjeFrame").src.toString().search(/\u002E/g));
 	var plaatsPunt = plaatsPuntArray[plaatsPuntArray.length - 1];
 	var lengthExtensie = [document.getElementById("plaatjeFrame").src.toString().length , plaatsPunt,0,0,1];
 	lengthExtensie[2] = lengthExtensie[0] - lengthExtensie[1];
