@@ -24,7 +24,7 @@ function galerijLijst(){
 	[4] waarde is de lengte van het volgnummer van het plaatje
 */
 function getImgPad(){
-	var lengthExtensie = [document.getElementById("plaatjeFrame").src.toString().length , document.getElementById("plaatjeFrame").src.toString().lastIndexOf("."),0,0,1];
+	var lengthExtensie = [document.getElementById("plaatjeFrame").src.toString().length , document.getElementById("plaatjeFrame").src.toString().lastIndexOf(/\u002E/),0,0,1];
 	lengthExtensie[2] = lengthExtensie[0] - lengthExtensie[1];
 	var isNumber = [document.getElementById("plaatjeFrame").src.charAt(lengthExtensie[1]-1) , document.getElementById("plaatjeFrame").src.charAt(lengthExtensie[1]-2)]
 	if (isNaN(isNumber[0])){
@@ -35,7 +35,7 @@ function getImgPad(){
 		lengthExtensie[4] = 1;
 	}
 	else{
-		document.getElementById("testGalerij").innerHTML = "2 nummer" + isNumber + "</br>" + document.getElementById("plaatjeFrame").src.toString() + "</br>" + document.getElementById("plaatjeFrame").src.toString().lastIndexOf(/\u002E/);
+		document.getElementById("testGalerij").innerHTML = "2 nummer" + isNumber + "</br>" + document.getElementById("plaatjeFrame").src.toString() + "</br>" + document.getElementById("plaatjeFrame").src.toString().lastIndexOf(/\u002E/ + lengthExtensie);
 		lengthExtensie[4] = 2;
 	}
 	lengthExtensie[3] = document.getElementById("plaatjeFrame").src.toString().slice(lengthExtensie[1] - lengthExtensie[4] , lengthExtensie[1])
