@@ -30,14 +30,14 @@ function getImgPad(){
 	lengthExtensie[2] = lengthExtensie[0] - lengthExtensie[1];
 	var isNumber = [document.getElementById("plaatjeFrame").src.charAt(lengthExtensie[1]-1) , document.getElementById("plaatjeFrame").src.charAt(lengthExtensie[1]-2)]
 	if (isNaN(isNumber[0])){
-		document.getElementById("testGalerij").innerHTML = "0 nummer" + isNumber;
+		document.getElementById("testGalerij").innerHTML = "0 nummer" + isNumber + "</br>" + plaatsPuntArray + "</br>" + plaatsPunt + "</br>" + document.getElementById("plaatjeFrame").src;
 	}
 	else if (isNaN(isNumber[1])){
-		document.getElementById("testGalerij").innerHTML = "1 nummer" + isNumber;
+		document.getElementById("testGalerij").innerHTML = "1 nummer" + isNumber + "</br>" + plaatsPuntArray;
 		lengthExtensie[4] = 1;
 	}
 	else{
-		document.getElementById("testGalerij").innerHTML = "2 nummer" + isNumber + "</br>" + document.getElementById("plaatjeFrame").src.toString() + "</br>" + document.getElementById("plaatjeFrame").src.toString().lastIndexOf(/\u002E/ + lengthExtensie);
+		document.getElementById("testGalerij").innerHTML = "2 nummer" + isNumber;
 		lengthExtensie[4] = 2;
 	}
 	lengthExtensie[3] = document.getElementById("plaatjeFrame").src.toString().slice(lengthExtensie[1] - lengthExtensie[4] , lengthExtensie[1])
