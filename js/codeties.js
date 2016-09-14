@@ -29,7 +29,6 @@ function getImgPad(){
 	var isNumber = [document.getElementById("plaatjeFrame").src.charAt(lengthExtensie[1]-1) , document.getElementById("plaatjeFrame").src.charAt(lengthExtensie[1]-2)]
 	if (isNaN(isNumber[0])){
 		document.getElementById("testGalerij").innerHTML = "0 nummer" + isNumber;
-		throw "geen genummerde plaatjes"
 	}
 	else if (isNaN(isNumber[1])){
 		document.getElementById("testGalerij").innerHTML = "1 nummer" + isNumber;
