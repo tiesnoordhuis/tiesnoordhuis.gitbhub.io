@@ -28,7 +28,7 @@ function getImgPad(){
 	lengthExtensie[2] = lengthExtensie[0] - lengthExtensie[1];
 	var isNumber = [document.getElementById("plaatjeFrame").src.charAt(lengthExtensie[1]-1) , document.getElementById("plaatjeFrame").src.charAt(lengthExtensie[1]-2)]
 	if (isNaN(isNumber[0])){
-		document.getElementById("testGalerij").innerHTML = "0 nummer" + isNumber;
+		document.getElementById("testGalerij").innerHTML = "0 nummer" + isNumber+"</br>"+document.getElementById("plaatjeFrame").src;
 	}
 	else if (isNaN(isNumber[1])){
 		document.getElementById("testGalerij").innerHTML = "1 nummer" + isNumber;
