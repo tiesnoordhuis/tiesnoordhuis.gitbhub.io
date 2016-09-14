@@ -35,7 +35,7 @@ function getImgPad(){
 		lengthExtensie[4] = 1;
 	}
 	else{
-		document.getElementById("testGalerij").innerHTML = "2 nummer" + isNumber;
+		document.getElementById("testGalerij").innerHTML = "2 nummer" + isNumber + "</br>" + document.getElementById("plaatjeFrame").src.toString() + "</br>" + document.getElementById("plaatjeFrame").src.toString().lastIndexOf(/\u002E/);
 		lengthExtensie[4] = 2;
 	}
 	lengthExtensie[3] = document.getElementById("plaatjeFrame").src.toString().slice(lengthExtensie[1] - lengthExtensie[4] , lengthExtensie[1])
