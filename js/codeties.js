@@ -12,6 +12,54 @@ var plaatjeNaam = "leeg";
 var plaatjeNaamLengte = 0;
 var totaalPlaatjes = 22;
 
+function setImgIntro(){
+	setImgWindow(document.getElementById("img2").height , document.getElementById("img2").width);
+}
+
+function setImgWindow(a,b){
+var h = [window.innerHeight,0,0,0] ;
+h[1] = 0.9 * h[0];
+h[2] = a;
+var w = [0,0];
+w[0] = b
+/*
+	h[2] = document.getElementById("img2").height;
+	w[0] = document.getElementById("img2").width;
+*/
+var ratio = h[2]/w[0];
+if (h[2] > h[1] && w[0] < 1000){
+	h[3] = h[1];
+	w[1] = h[3] / ratio;
+}
+else if (h[2] < h[1] && w[0] > 1000){
+	w[1] = 1000;
+	h[3] = ratio * 1000;
+}
+else if(h[2] < h[1] && w[0] < 1000){
+	h[3] = h[2];
+	w[1] = w[0];
+}
+else if(h[2] > h[1] && w[0] > 1000){
+	if(ratio * 1000 > h[1]){
+		h[3] = h[1];
+		w[1] = h[1] / ratio;
+	}
+	else if(ratio * 1000 < h[1]){
+		w[1] = 1000;
+		h[3] = w[1] * ratio;
+	}
+	else if(ratio * 1000 == h[1]){
+		w[1] = 1000;
+		h[3] = h[1];
+	}
+}
+document.getElementById("img2").style.height = h[3]+"px" ;
+document.getElementById("img2").style.width = w[1]+"px" ;
+document.getElementById("imgContainer").style.height = h[3]+"px" ;
+document.getElementById("imgContainer").style.width = w[1]+"px" ;
+document.getElementById("searchBar").placeholder = h[3] + w;
+return;
+}
 function galerijLijst(){
 	
 	return
@@ -90,6 +138,7 @@ showSlides(slideIndex);
 
 function plusSlides(n) {
   showSlides(slideIndex += n);
+  setImgWindow(document.getElementById("img2").height , document.getElementById("img2").width);
 }
 
 function currentSlide(n) {
