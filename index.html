@@ -18,7 +18,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body style="background-color: #E0F8F8;">
+  <body style="background-color: #E0F8F8;" onkeydown="escapeModal()">
 		<nav class="navbar navbar-default navbar-fixed-top">
 		  <div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->
@@ -104,8 +104,9 @@
 			</div>
 		</div>
 		<div role="tabpanel" class="tab-pane" id="web1">
+		<div class="niks">
 			<!-- Trigger the Modal -->
-			<img id="myImg" src="Galerij/plaatje2.jpg" alt="Trolltunga, Norway" width="300" height="200">
+			<img class="niks" id="myImg" src="Galerij/plaatje2.jpg" alt="Trolltunga, Norway" width="300" height="200">
 
 			<!-- The Modal -->
 			<div id="myModal" class="modal">
@@ -114,11 +115,12 @@
 			  <span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
 
 			  <!-- Modal Content (The Image) -->
-			  <img class="modal-content" id="img01">
+			  <img class="modal-content" id="img01" onkeydown="escapeModal()">
 
 			  <!-- Modal Caption (Image Text) -->
 			  <div id="caption"></div>
 			</div>
+		</div>
 		</div>
 		<div role="tabpanel" class="tab-pane" id="web2">website 2</div>
 		<div role="tabpanel" class="tab-pane" id="web3">

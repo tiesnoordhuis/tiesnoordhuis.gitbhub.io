@@ -316,3 +316,10 @@ var span = document.getElementsByClassName("close")[0];
 span.onclick = function() { 
   modal.style.display = "none";
 }
+
+function escapeModal(){
+	var x = event.keyCode;
+	if (x == 27){
+		document.getElementById("myModal").style.display = "none";
+	}
+}
