@@ -11,6 +11,113 @@ var plaatjeNummer = 1;
 var plaatjeNaam = "leeg";
 var plaatjeNaamLengte = 0;
 var totaalPlaatjes = 22;
+var homeImgDiv = ["homeImgDiv1", "homeImgDiv2", "homeImgDiv3"];
+var homeImg = ["homeImg1", "homeImg2", "homeImg3"];
+var homeImgBegin = getHomeImgActive();
+var plaatjeFrame = "plaatjeFrame"
+var i = 0;
+
+function getHomeImgActive(){
+	var n = 0;
+	for (n = 0; n < 3; n++ ) {
+		var homeImgActiveTemp = document.getElementById(homeImgDiv[n]).style.display;
+		if (homeImgActiveTemp == "block")
+			var homeImgActive = n;
+	}
+	return homeImgActive
+}
+
+function homeImgNext () {
+	var homeImgActive = getHomeImgActive()
+	var homeImgActiveTemp = 0;	
+	if (homeImgActive == 0) {
+		document.getElementById(homeImgDiv[0]).style.display = "none";
+		document.getElementById(homeImg[0]).style.height = "";
+		document.getElementById(homeImg[0]).style.width = "";
+		document.getElementById(homeImgDiv[1]).style.display = "block";
+		homeImgActiveTemp = 2;
+	}
+	else if (homeImgActive == 1) {
+		document.getElementById(homeImgDiv[1]).style.display = "none";
+		document.getElementById(homeImg[1]).style.height = "";
+		document.getElementById(homeImg[1]).style.width = "";		
+		document.getElementById(homeImgDiv[2]).style.display = "block";
+		homeImgActiveTemp = 0;
+	}
+	else if (homeImgActive == 2) {
+		document.getElementById(homeImgDiv[2]).style.display = "none";
+		document.getElementById(homeImg[2]).style.height = "";
+		document.getElementById(homeImg[2]).style.width = "";		
+		document.getElementById(homeImgDiv[0]).style.display = "block";
+		homeImgActiveTemp = 1;		
+	}
+	for (i = 0 ; i < 3 ; i++){
+	lengthExtensie = getImgPad(homeImg[homeImgActiveTemp]);
+		if (Number(lengthExtensie[3]) < totaalPlaatjes){
+		plaatjeNummer = Number(lengthExtensie[3]) + 1;
+		}
+		else{
+			plaatjeNummer = 1;
+		}
+		setPlaatjeNaam(lengthExtensie, plaatjeNummer, homeImg[homeImgActiveTemp]);
+	}
+	
+	setHomeImgWindow();
+	return lengthExtensie;	
+}
+
+function homeImgPrev () {
+	var homeImgActive = getHomeImgActive();
+	var homeImgActiveTemp = 0;
+	if (homeImgActive == 0) {
+		document.getElementById(homeImgDiv[0]).style.display = "none";
+		document.getElementById(homeImg[0]).style.height = "";
+		document.getElementById(homeImg[0]).style.width = "";
+		document.getElementById(homeImgDiv[2]).style.display = "block";
+		homeImgActiveTemp = 1;
+	}
+	else if (homeImgActive == 1) {
+		document.getElementById(homeImgDiv[1]).style.display = "none";
+		document.getElementById(homeImg[1]).style.height = "";
+		document.getElementById(homeImg[1]).style.width = "";
+		document.getElementById(homeImgDiv[0]).style.display = "block";
+		homeImgActiveTemp = 2;
+	}
+	else if (homeImgActive == 2) {
+		document.getElementById(homeImgDiv[2]).style.display = "none";
+		document.getElementById(homeImg[2]).style.height = "";
+		document.getElementById(homeImg[2]).style.width = "";
+		document.getElementById(homeImgDiv[1]).style.display = "block";
+		homeImgActiveTemp = 0;
+	}
+	for (i = 0 ; i < 3 ; i++){
+	lengthExtensie = getImgPad(homeImg[homeImgActiveTemp]);
+		if (Number(lengthExtensie[3]) > 1){
+			plaatjeNummer = Number(lengthExtensie[3]) - 1;
+		}
+		else{
+			plaatjeNummer = totaalPlaatjes;
+		}
+		setPlaatjeNaam(lengthExtensie, plaatjeNummer, homeImg[homeImgActiveTemp]);
+	}
+	
+	setHomeImgWindow();
+	return lengthExtensie;
+}
+
+function setHomeImgWindow(){
+	var homeImgActive = getHomeImgActive();
+	var hw = setImgWindow(document.getElementById(homeImg[homeImgActive]).height , document.getElementById(homeImg[homeImgActive]).width);
+	var h = hw[0];
+	var w = hw[1];
+	document.getElementById(homeImg[homeImgActive]).style.height = h[3]+"px" ;
+	document.getElementById(homeImg[homeImgActive]).style.width = w[1]+"px" ;
+	document.getElementById(homeImgDiv[homeImgActive]).style.height = h[3]+"px" ;
+	document.getElementById(homeImgDiv[homeImgActive]).style.width = w[1]+"px" ;
+	document.getElementById("slideshow-container").style.height = h[3]+"px" ;
+	document.getElementById("slideshow-container").style.width = w[1]+"px" ;
+	document.getElementById(homeImgDiv[homeImgActive]).innerHTML += homeImgActive + "</br>" + hw + "</br>" + h + "</br>" + w;
+}
 
 setImgHomeIntro();
 
@@ -22,9 +129,10 @@ function setImgHomeIntro(){
 	document.getElementById("homeImg2").style.width = w[1]+"px" ;
 	document.getElementById("homeImgDiv2").style.height = h[3]+"px" ;
 	document.getElementById("homeImgDiv2").style.width = w[1]+"px" ;
-	document.getElementById("homeGalerij").style.height = h[3]+"px" ;
-	document.getElementById("homeGalerij").style.width = w[1]+"px" ;
-	document.getElementById("homeImgDiv2").innerHTML += hw + "</br>" + h + "</br>" + w;
+	document.getElementById("slideshow-container").style.height = h[3]+"px" ;
+	document.getElementById("slideshow-container").style.width = w[1]+"px" ;
+	var n = getHomeImgActive();
+	document.getElementById("homeImgDiv2").innerHTML += n + "</br>" + hw + "</br>" + h + "</br>" + w;
 }
 
 function setImgIntro(){
@@ -95,61 +203,60 @@ function galerijLijst(){
 	[3] waarde is het laatste nummer voor de punt   b.v. plaatje3.jpeg geeft als waarde 3
 	[4] waarde is de lengte van het volgnummer van het plaatje
 */
-function getImgPad(){
-	var plaatsPuntTemp = document.getElementById("plaatjeFrame").src.toString().slice(-6);
-	var plaatsPunt = plaatsPuntTemp.search(/\u002E/g)+ document.getElementById("plaatjeFrame").src.toString().length - 6;
-	var lengthExtensie = [document.getElementById("plaatjeFrame").src.toString().length , plaatsPunt,0,0,1];
+
+var lengthExtensie = [0,0,0,0,0];
+
+function getImgPad(plaatjeFrame){	
+	var plaatsPuntTemp = document.getElementById(plaatjeFrame).src.toString().slice(-6);
+	var plaatsPunt = plaatsPuntTemp.search(/\u002E/g)+ document.getElementById(plaatjeFrame).src.toString().length - 6;
+	lengthExtensie = [document.getElementById(plaatjeFrame).src.toString().length , plaatsPunt,0,0,1];
 	lengthExtensie[2] = lengthExtensie[0] - lengthExtensie[1];
-	var isNumber = [document.getElementById("plaatjeFrame").src.charAt(lengthExtensie[1]-1) , document.getElementById("plaatjeFrame").src.charAt(lengthExtensie[1]-2)]
+	var isNumber = [document.getElementById(plaatjeFrame).src.charAt(lengthExtensie[1]-1) , document.getElementById(plaatjeFrame).src.charAt(lengthExtensie[1]-2)]
 	if (isNaN(isNumber[0])){
-		document.getElementById("testGalerij").innerHTML = "0 nummer" + isNumber + "</br>" + plaatsPunt + "</br>" + document.getElementById("plaatjeFrame").src;
 	}
 	else if (isNaN(isNumber[1])){
-		document.getElementById("testGalerij").innerHTML = "1 nummer" + isNumber + "</br>" + plaatsPunt + "</br>" + document.getElementById("plaatjeFrame").src;
 		lengthExtensie[4] = 1;
 	}
 	else{
-		document.getElementById("testGalerij").innerHTML = "2 nummer" + isNumber + "</br>" + plaatsPunt + "</br>" + document.getElementById("plaatjeFrame").src;
 		lengthExtensie[4] = 2;
 	}
-	lengthExtensie[3] = document.getElementById("plaatjeFrame").src.toString().slice(lengthExtensie[1] - lengthExtensie[4] , lengthExtensie[1])
+	lengthExtensie[3] = document.getElementById(plaatjeFrame).src.toString().slice(lengthExtensie[1] - lengthExtensie[4] , lengthExtensie[1])
 	return lengthExtensie
 }
 /*
 	maakt de naam van het plaatje bestand, door het samen te voegen van het nieuwe volgnummer met de oude naam string
 */
-function setPlaatjeNaam(lengthExtensie,plaatjeNummer){
+function setPlaatjeNaam(lengthExtensie, plaatjeNummer, plaatjeFrame){
 	plaatjeNaamLengte = lengthExtensie[1] - lengthExtensie[4];
-	plaatjeNaam = document.getElementById("plaatjeFrame").src.toString().substr(0,plaatjeNaamLengte);
-	document.getElementById("plaatjeFrame").src = plaatjeNaam + plaatjeNummer + ".jpg";
-	return
+	plaatjeNaam = document.getElementById(plaatjeFrame).src.toString().substr(0,plaatjeNaamLengte);
+	document.getElementById(plaatjeFrame).src = plaatjeNaam + plaatjeNummer + ".jpg";
 }
 /*
 	verandert het plaatje naar het plaatje met 1 LAGER volgnummer
 */
 function galerijLinks(){
-	lengthExtensie = getImgPad();
+	lengthExtensie = getImgPad("plaatjeFrame");
 	if (Number(lengthExtensie[3]) > 1){
 		plaatjeNummer = Number(lengthExtensie[3]) - 1;
 	}
 	else{
 		plaatjeNummer = totaalPlaatjes;
 	}
-	setPlaatjeNaam(lengthExtensie,plaatjeNummer);
+	setPlaatjeNaam(lengthExtensie, plaatjeNummer, "plaatjeFrame");
 	return
 }
 /*
 	verandert het plaatje naar het plaatje met 1 HOGER volgnummer
 */
 function galerijRechts(){
-	lengthExtensie = getImgPad();
+	lengthExtensie = getImgPad("plaatjeFrame");
 	if (Number(lengthExtensie[3]) < totaalPlaatjes){
 		plaatjeNummer = Number(lengthExtensie[3]) + 1;
 	}
 	else{
 		plaatjeNummer = 1;
 	}
-	setPlaatjeNaam(lengthExtensie,plaatjeNummer);
+	setPlaatjeNaam(lengthExtensie, plaatjeNummer, "plaatjeFrame");
 	return
 }
 
