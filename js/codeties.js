@@ -116,7 +116,6 @@ function setHomeImgWindow(){
 	document.getElementById(homeImgDiv[homeImgActive]).style.width = w[1]+"px" ;
 	document.getElementById("slideshow-container").style.height = h[3]+"px" ;
 	document.getElementById("slideshow-container").style.width = w[1]+"px" ;
-	document.getElementById(homeImgDiv[homeImgActive]).innerHTML += homeImgActive + "</br>" + hw + "</br>" + h + "</br>" + w;
 }
 
 setImgHomeIntro();
@@ -131,8 +130,6 @@ function setImgHomeIntro(){
 	document.getElementById("homeImgDiv2").style.width = w[1]+"px" ;
 	document.getElementById("slideshow-container").style.height = h[3]+"px" ;
 	document.getElementById("slideshow-container").style.width = w[1]+"px" ;
-	var n = getHomeImgActive();
-	document.getElementById("homeImgDiv2").innerHTML += n + "</br>" + hw + "</br>" + h + "</br>" + w;
 }
 
 function setImgIntro(){
@@ -291,4 +288,31 @@ function showSlides(n) {
   }
   slides[slideIndex-1].style.display = "block";
   dots[slideIndex-1].className += " activeImg";
+}
+
+/* nieuw stuk code, joepie! nu nog bedenken wat ik ga maken
+*/
+
+/* ooh het is een modal img ding, leuk
+*/
+
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById('myImg');
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+img.onclick = function(){
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    captionText.innerHTML = this.alt;
+}
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() { 
+  modal.style.display = "none";
 }
