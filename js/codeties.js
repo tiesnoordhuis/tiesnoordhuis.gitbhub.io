@@ -12,8 +12,27 @@ var plaatjeNaam = "leeg";
 var plaatjeNaamLengte = 0;
 var totaalPlaatjes = 22;
 
+setImgHomeIntro();
+
+function setImgHomeIntro(){
+	var hw = setImgWindow(document.getElementById("homeImg2").height , document.getElementById("homeImg2").width);
+	var h = hw[0];
+	var w = hw[1];
+	document.getElementById("homeImg2").style.height = h[3]+"px" ;
+	document.getElementById("homeImg2").style.width = w[1]+"px" ;
+	document.getElementById("homeImgDiv2").style.height = h[3]+"px" ;
+	document.getElementById("homeImgDiv2").style.width = w[1]+"px" ;
+	document.getElementById("homeGalerij").style.height = h[3]+"px" ;
+	document.getElementById("homeGalerij").style.width = w[1]+"px" ;
+	document.getElementById("homeImgDiv2").innerHTML += hw + "</br>" + h + "</br>" + w;
+}
+
 function setImgIntro(){
-	setImgWindow(document.getElementById("img2").height , document.getElementById("img2").width);
+	var hw = setImgWindow(document.getElementById("img2").height , document.getElementById("img2").width);
+	var h = hw[0];
+	var w = hw[1];
+	setImgWindowWeb3(h,w);
+	document.getElementById("searchBar").placeholder = hw;
 }
 
 function setImgWindow(a,b){
@@ -53,11 +72,16 @@ else if(h[2] > h[1] && w[0] > 1000){
 		h[3] = h[1];
 	}
 }
+var hw = [h,w];
+return hw;
+}
+
+function setImgWindowWeb3(h,w){
 document.getElementById("img2").style.height = h[3]+"px" ;
 document.getElementById("img2").style.width = w[1]+"px" ;
 document.getElementById("imgContainer").style.height = h[3]+"px" ;
 document.getElementById("imgContainer").style.width = w[1]+"px" ;
-document.getElementById("searchBar").placeholder = h[3] + w;
+
 return;
 }
 function galerijLijst(){
@@ -139,6 +163,7 @@ showSlides(slideIndex);
 function plusSlides(n) {
   showSlides(slideIndex += n);
   setImgWindow(document.getElementById("img2").height , document.getElementById("img2").width);
+  setImgWindowWeb3(h,w);
 }
 
 function currentSlide(n) {
