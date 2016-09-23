@@ -15,6 +15,27 @@
 	
 }
 
+.links, .rechts{
+	cursor: pointer;
+	position: absolute;
+	top: 22px;
+	bottom: 0px;
+	width: 16px;
+	padding: 16px;
+	margin-top: -22px;
+	color: white;
+	font-weight: bold;
+	font-size: 18px;
+	transition: 0.6s ease;
+	border-radius: 0 3px 3px 0;
+	vertical-align: middle;
+}
+
+.rechts{
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
 /* Next & previous buttons */
 .prev, .next {
   cursor: pointer;
