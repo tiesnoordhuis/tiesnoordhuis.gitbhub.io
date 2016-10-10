@@ -223,3 +223,13 @@
 .modalTab {
 	margin-top: 50px;
 }
+
+/* sticky navbar */
+.affix {
+      top: 0;
+      width: 100%;
+  }
+
+  .affix + .container-fluid {
+      padding-top: 70px;
+  }
