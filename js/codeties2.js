@@ -19,12 +19,10 @@ function charKeyMode(n){
 	}
 }
 
-
-
-
 function onAllKeyDown(event){
 	var x = event.which || event.keyCode;
 	document.getElementById("keyContainer1").innerHTML = x;
+	keyLogger.push(x);
 }
 
 function onAllKeyPress(event){
@@ -39,9 +37,13 @@ function startFunction(){
 	
 }
 
-function buttonFunction(){
-	document.getElementById("mainContainer2").innerHTML += charLogger;
-	document.getElementById("mainContainer2").innerHTML += "<br>";
+
+/* pakt de lijst die gegeven wordt en plakt hem in een div */
+function buttonFunction(a,b){
+	var naam = ["mainContainer2","keyContainer1"];
+	document.getElementById(naam[b]).innerHTML += "<br>";
+	document.getElementById(naam[b]).innerHTML += a;
+
 }
 
 function buttonClear(){
