@@ -17,8 +17,14 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body onload="startFunction()" onkeypress="onAllKeyPress(event)">
+<body onload="startFunction()" onkeypress="onAllKeyPress(event)" onkeydown="onAllKeyDown(event)">
 		<br>
+		<div>
+		<button onclick="charKeyMode(1)">char mode</button>
+		<button onclick="charKeyMode(2)">key mode</button>
+		</div>
+		<br>
+	<div id="charWindow" style="display:block;">
 	<div class="container" id="mainContainer">
 		<button onclick="buttonFunction()">Button</button>
 	</div>
@@ -32,6 +38,11 @@
 		<button onclick="makeList()">maak lijst</button>
 	</div>
 	<div class="container" id="mainContainer5">	
+	</div>
+	</div>
+	<div id="keyWindow" style="display:none">
+		<div class="container" id="keyContainer1">	
+		</div>
 	</div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
